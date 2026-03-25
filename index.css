@@ -1,0 +1,527 @@
+/* ============================================================
+   User Management Screen – Styles
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --clr-primary: #4a90d9;
+  --clr-primary-hover: #357abd;
+  --clr-primary-light: #d4e6f9;
+  --clr-header-bg: #47637a;
+  --clr-header-text: #ffffff;
+  --clr-bg: #f4f6f9;
+  --clr-surface: #ffffff;
+  --clr-text: #2c3e50;
+  --clr-text-muted: #7f8c8d;
+  --clr-border: #dce1e6;
+  --clr-border-focus: #4a90d9;
+  --clr-error: #e74c3c;
+  --clr-success: #27ae60;
+  --clr-row-hover: #f0f4f8;
+  --clr-row-selected: #d4e6f9;
+  --clr-shadow: rgba(0, 0, 0, 0.08);
+  --clr-shadow-lg: rgba(0, 0, 0, 0.12);
+  --radius: 6px;
+  --radius-lg: 10px;
+  --font: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+  --transition: 0.2s ease;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--clr-text);
+  background: var(--clr-bg);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ---------- Wrapper ---------- */
+.app-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ---------- Toolbar ---------- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  background: var(--clr-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px var(--clr-shadow);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.toolbar__left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--clr-primary);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(74, 144, 217, 0.3);
+}
+
+.btn--primary:hover {
+  background: var(--clr-primary-hover);
+  box-shadow: 0 4px 12px rgba(74, 144, 217, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn--primary:active {
+  transform: translateY(0);
+}
+
+.btn .icon {
+  font-size: 1.1em;
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--clr-text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--clr-primary);
+  cursor: pointer;
+}
+
+/* ---------- Content Layout ---------- */
+.content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.panel {
+  background: var(--clr-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px var(--clr-shadow);
+}
+
+.panel--table {
+  overflow: hidden;
+}
+
+.panel--form {
+  overflow: visible;
+}
+
+.panel--table {
+  flex: 0 0 45%;
+  min-width: 0;
+}
+
+.panel--form {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- Table ---------- */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.user-table thead th {
+  background: var(--clr-header-bg);
+  color: var(--clr-header-text);
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 14px;
+  position: relative;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.user-table thead th:first-child {
+  border-radius: var(--radius-lg) 0 0 0;
+}
+
+.user-table thead th:last-child {
+  border-radius: 0 var(--radius-lg) 0 0;
+}
+
+.th-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.th-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.th-icons button {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  padding: 2px;
+  font-size: 0.85rem;
+  line-height: 1;
+  transition: color var(--transition);
+  display: inline-flex;
+  align-items: center;
+}
+
+.th-icons button:hover,
+.th-icons button.active {
+  color: #fff;
+}
+
+.user-table tbody tr {
+  cursor: pointer;
+  transition: background var(--transition);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.user-table tbody tr:hover {
+  background: var(--clr-row-hover);
+}
+
+.user-table tbody tr.selected {
+  background: var(--clr-row-selected);
+}
+
+.user-table tbody td {
+  padding: 11px 14px;
+  color: var(--clr-text);
+}
+
+.user-table .empty-row td {
+  text-align: center;
+  color: var(--clr-text-muted);
+  font-style: italic;
+  padding: 30px 14px;
+}
+
+/* ---------- Filter Popover ---------- */
+.filter-popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 16px var(--clr-shadow-lg);
+  padding: 10px;
+  min-width: 180px;
+  display: none;
+}
+
+.filter-popover.open {
+  display: block;
+  animation: fadeIn 0.15s ease;
+}
+
+.filter-popover input,
+.filter-popover select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  font-family: var(--font);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.filter-popover input:focus,
+.filter-popover select:focus {
+  border-color: var(--clr-border-focus);
+}
+
+/* ---------- Form ---------- */
+.form-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.form-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--clr-text);
+}
+
+.form-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.form-group label {
+  flex: 0 0 130px;
+  padding-top: 9px;
+  font-weight: 500;
+  color: var(--clr-text);
+  text-align: right;
+  font-style: italic;
+}
+
+.form-group .input-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"] {
+  width: 100%;
+  padding: 9px 14px;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-family: var(--font);
+  color: var(--clr-text);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus {
+  border-color: var(--clr-border-focus);
+  box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.15);
+}
+
+.form-group input.invalid {
+  border-color: var(--clr-error);
+}
+
+.form-group input.invalid:focus {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+}
+
+.error-msg {
+  font-size: 0.78rem;
+  color: var(--clr-error);
+  margin-top: 4px;
+  display: none;
+}
+
+.error-msg.visible {
+  display: block;
+  animation: fadeIn 0.2s ease;
+}
+
+/* checkbox alignment */
+.form-group--checkbox label {
+  padding-top: 2px;
+}
+
+.form-group--checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--clr-primary);
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+/* ---------- Multi-Select Dropdown ---------- */
+.multiselect {
+  position: relative;
+  width: 100%;
+}
+
+.multiselect__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 9px 14px;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-family: var(--font);
+  color: var(--clr-text);
+  background: #fff;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  user-select: none;
+}
+
+.multiselect__trigger.placeholder {
+  color: var(--clr-text-muted);
+}
+
+.multiselect__trigger:focus,
+.multiselect.open .multiselect__trigger {
+  border-color: var(--clr-border-focus);
+  box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.15);
+  outline: none;
+}
+
+.multiselect__trigger.invalid {
+  border-color: var(--clr-error);
+}
+
+.multiselect__arrow {
+  font-size: 0.7rem;
+  color: var(--clr-text-muted);
+  transition: transform var(--transition);
+}
+
+.multiselect.open .multiselect__arrow {
+  transform: rotate(180deg);
+}
+
+.multiselect__dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 16px var(--clr-shadow-lg);
+  z-index: 50;
+  display: none;
+}
+
+.multiselect.open .multiselect__dropdown {
+  display: block;
+  animation: fadeIn 0.15s ease;
+}
+
+.multiselect__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition: background var(--transition);
+  font-size: 0.9rem;
+}
+
+.multiselect__option:hover {
+  background: var(--clr-row-hover);
+}
+
+.multiselect__option.selected {
+  background: var(--clr-primary-light);
+  font-weight: 600;
+}
+
+/* ---------- Toast Notification ---------- */
+.toast-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toast {
+  padding: 14px 22px;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+  box-shadow: 0 4px 16px var(--clr-shadow-lg);
+  animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+  pointer-events: none;
+}
+
+.toast--success {
+  background: var(--clr-success);
+}
+
+.toast--error {
+  background: var(--clr-error);
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .panel--table,
+  .panel--form {
+    flex: none;
+    width: 100%;
+  }
+
+  .form-group {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .form-group label {
+    text-align: left;
+    flex: none;
+    padding-top: 0;
+  }
+}

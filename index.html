@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="User Management Screen – Create, edit, and manage application users." />
+  <title>User Management</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+
+    <!-- ==================== Toolbar ==================== -->
+    <div class="toolbar" role="toolbar" aria-label="User management actions">
+      <div class="toolbar__left">
+        <button id="btnNewUser" class="btn btn--primary" type="button">
+          <span class="icon">+</span> New User
+        </button>
+        <label class="checkbox-label">
+          <input type="checkbox" id="chkHideDisabled" checked />
+          Hide Disabled User
+        </label>
+      </div>
+      <button id="btnSaveUser" class="btn btn--primary" type="button">Save User</button>
+    </div>
+
+    <!-- ==================== Content ==================== -->
+    <div class="content">
+
+      <!-- ---------- User List Table ---------- -->
+      <div class="panel panel--table">
+        <table class="user-table" id="userTable" aria-label="Users list">
+          <thead>
+            <tr>
+              <th data-key="id">
+                <div class="th-content">
+                  <span>ID</span>
+                  <span class="th-icons">
+                    <button type="button" class="sort-btn" data-key="id" title="Sort by ID">⇅</button>
+                    <button type="button" class="filter-btn" data-key="id" title="Filter ID">🔽</button>
+                  </span>
+                </div>
+                <div class="filter-popover" id="filter-id">
+                  <input type="text" placeholder="Filter ID…" data-filter-key="id" />
+                </div>
+              </th>
+              <th data-key="userName">
+                <div class="th-content">
+                  <span>User Name</span>
+                  <span class="th-icons">
+                    <button type="button" class="sort-btn" data-key="userName" title="Sort by User Name">⇅</button>
+                    <button type="button" class="filter-btn" data-key="userName" title="Filter User Name">🔽</button>
+                  </span>
+                </div>
+                <div class="filter-popover" id="filter-userName">
+                  <input type="text" placeholder="Filter User Name…" data-filter-key="userName" />
+                </div>
+              </th>
+              <th data-key="email">
+                <div class="th-content">
+                  <span>Email</span>
+                  <span class="th-icons">
+                    <button type="button" class="sort-btn" data-key="email" title="Sort by Email">⇅</button>
+                    <button type="button" class="filter-btn" data-key="email" title="Filter Email">🔽</button>
+                  </span>
+                </div>
+                <div class="filter-popover" id="filter-email">
+                  <input type="text" placeholder="Filter Email…" data-filter-key="email" />
+                </div>
+              </th>
+              <th data-key="enabled">
+                <div class="th-content">
+                  <span>Enabled</span>
+                  <span class="th-icons">
+                    <button type="button" class="sort-btn" data-key="enabled" title="Sort by Enabled">⇅</button>
+                    <button type="button" class="filter-btn" data-key="enabled" title="Filter Enabled">🔽</button>
+                  </span>
+                </div>
+                <div class="filter-popover" id="filter-enabled">
+                  <select data-filter-key="enabled">
+                    <option value="">All</option>
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                  </select>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="userTableBody">
+            <!-- Rows rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ---------- User Detail Form ---------- -->
+      <div class="panel panel--form">
+        <div class="form-header">
+          <h2 id="formTitle">New User</h2>
+        </div>
+        <form class="form-body" id="userForm" novalidate autocomplete="off">
+
+          <div class="form-group">
+            <label for="inputUsername">Username :</label>
+            <div class="input-wrapper">
+              <input type="text" id="inputUsername" name="username" />
+              <span class="error-msg" id="errUsername"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputDisplayName">Display Name :</label>
+            <div class="input-wrapper">
+              <input type="text" id="inputDisplayName" name="displayName" />
+              <span class="error-msg" id="errDisplayName"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPhone">Phone :</label>
+            <div class="input-wrapper">
+              <input type="text" id="inputPhone" name="phone" />
+              <span class="error-msg" id="errPhone"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputEmail">Email :</label>
+            <div class="input-wrapper">
+              <input type="email" id="inputEmail" name="email" />
+              <span class="error-msg" id="errEmail"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label id="labelUserRoles">User Roles :</label>
+            <div class="input-wrapper">
+              <div class="multiselect" id="msUserRoles" role="listbox" aria-labelledby="labelUserRoles" tabindex="0">
+                <div class="multiselect__trigger placeholder">
+                  <span class="multiselect__text">Select user roles…</span>
+                  <span class="multiselect__arrow">▼</span>
+                </div>
+                <div class="multiselect__dropdown">
+                  <div class="multiselect__option" data-value="guest">Guest</div>
+                  <div class="multiselect__option" data-value="admin">Admin</div>
+                  <div class="multiselect__option" data-value="superAdmin">SuperAdmin</div>
+                </div>
+              </div>
+              <span class="error-msg" id="errUserRoles"></span>
+            </div>
+          </div>
+
+          <div class="form-group form-group--checkbox">
+            <label for="inputEnabled">Enabled :</label>
+            <div class="input-wrapper">
+              <input type="checkbox" id="inputEnabled" name="enabled" />
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div><!-- /.content -->
+  </div><!-- /.app-wrapper -->
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="index.js"></script>
+</body>
+</html>
