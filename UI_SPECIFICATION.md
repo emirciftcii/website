@@ -2,8 +2,8 @@
 
 **Version:** 1.0  
 **Date:** 2026-03-25  
-**Author:** UI/UX Team  
-**Status:** Draft  
+**Author:** Emir Çiftci  
+**Status:** Final  
 
 ---
 
